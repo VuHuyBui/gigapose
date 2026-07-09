@@ -87,7 +87,7 @@ pip install git+https://github.com/thodan/bop_toolkit.git
 ### Checkpoints
 ```
 # download cnos detections for BOP'23 dataset
-pip install -U "huggingface_hub[cli]"
+pip install -U "huggingface_hub[cli]<1.0"
 python -m src.scripts.download_default_detections
 
 # download gigaPose's checkpoints 

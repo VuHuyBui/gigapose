@@ -411,16 +411,25 @@ def load_test_list_and_cnos_detections(
     - No sorting techniques since target_objects is not available
     """
     # load cnos detections
+    # if dataset_name in ["lmo", "tless", "tudl", "icbin", "itodd", "hb", "ycbv"]:
+    #     year = "19"
+    #     det_model = "cnos-fastsam"
+    # elif dataset_name in ["hope"]:
+    #     year = "24"
+    #     det_model = "cnos-sam"
+    # else:
+    #     raise NotImplementedError(
+    #         f"Dataset {dataset_name} is not supported with default detections!"
+    #     )
+
     if dataset_name in ["lmo", "tless", "tudl", "icbin", "itodd", "hb", "ycbv"]:
         year = "19"
         det_model = "cnos-fastsam"
-    elif dataset_name in ["hope"]:
+    else:
+        # Treat custom datasets as BOP-2024-style detection datasets.
         year = "24"
         det_model = "cnos-sam"
-    else:
-        raise NotImplementedError(
-            f"Dataset {dataset_name} is not supported with default detections!"
-        )
+
     cnos_dets_dir = (
         root_dir / "default_detections" / f"core{year}_model_based_unseen/" / det_model
     )

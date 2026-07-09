@@ -23,10 +23,14 @@ def convert_scene_to_imagewise(
     in bop-imagewise format.
     :param image_tkey: Template path containing the string '{image_id}'.
     """
-    if "hb" in str(input_scene_dir) or "itodd" in str(input_scene_dir) or "hope" in str(input_scene_dir):
-        gt_available = False
-    else:
-        gt_available = True
+    # if "hb" in str(input_scene_dir) or "itodd" in str(input_scene_dir) or "hope" in str(input_scene_dir):
+    #     gt_available = False
+    # else:
+    #     gt_available = True
+    scene_gt_path = input_scene_dir / "scene_gt.json"
+    scene_gt_info_path = input_scene_dir / "scene_gt_info.json"
+
+    gt_available = scene_gt_path.exists() and scene_gt_info_path.exists()
     scene_data = bop_scenewise.load_scene_data(
         input_scene_dir,
         load_scene_camera=True,
